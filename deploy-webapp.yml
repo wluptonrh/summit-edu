@@ -55,15 +55,15 @@
     - name: Unarchive web content
       ansible.builtin.unarchive:
         src: /tmp/web.zip
-        dest: /tmp/
+        dest: /var/www/html
         remote_src: yes
         # mode: '0644'
 
-    - name: Copy contents to html
-      ansible.builtin.copy:
-        src: "/tmp/Bricker Free Website Template - Free-CSS.com/"
-        dest: /var/www/html
-        remote_src: true
+    # - name: Copy contents to html
+    #   ansible.builtin.copy:
+    #     src: "/tmp/Bricker Free Website Template - Free-CSS.com/"
+    #     dest: /var/www/html
+    #     remote_src: true
 
     # - name: Copy index.html
     #   ansible.builtin.copy:
