@@ -55,7 +55,7 @@
     - name: Unarchive web content
       ansible.builtin.unarchive:
         src: /var/www/html/web.zip
-        dest: /var/www/html/
+        dest: /var/www/html
         remote_src: yes
 
     # - name: Copy index.html
