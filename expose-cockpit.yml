@@ -1,4 +1,4 @@
-- name: Create Service and Route for our Apache Webserver
+- name: Create Service and Route to Access the RHEL Webconsole
   hosts: all
   tasks:
 
