@@ -4,6 +4,11 @@
   become: true
   tasks:
 
+    - name: Install unzip
+      ansible.builtin.dnf:
+        name: unzip
+        state: present
+
     - name: Install firewalld
       ansible.builtin.dnf:
         name: firewalld
@@ -41,11 +46,18 @@
         state: started
       check_mode: false
 
-    - name: Copy index.html
-      ansible.builtin.copy:
-        src: web.html
+    - name: Download website template
+      ansible.builtin.get_url:
+        url: https://www.free-css.com/assets/files/free-css-templates/download/page281/koppee.zip
         dest: /var/www/html/index.html
+        decompress: true
         mode: '644'
+
+    # - name: Copy index.html
+    #   ansible.builtin.copy:
+    #     src: web.html
+    #     dest: /var/www/html/index.html
+    #     mode: '644'
 
   handlers:
     - name: Reload Firewall
