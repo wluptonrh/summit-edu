@@ -1,0 +1,41 @@
+- name: Create Service and Route for our Apache Webserver
+  hosts: all
+  tasks:
+
+  - name: Create cockpit service
+    kubernetes.core.k8s:
+      state: present
+      definition:
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: summit-edu-service
+          namespace: summit-edu
+        spec:
+          selector:
+            env: summit-edu
+          ports:
+            - protocol: TCP
+              port: 9090
+              targetPort: 9090
+
+  - name: Create cockpit route
+    kubernetes.core.k8s:
+      state: present
+      definition: 
+        kind: Route
+        apiVersion: route.openshift.io/v1
+        metadata:
+          name: summit-edu-route
+          namespace: summit-edu
+          labels: {}
+        spec:
+          to:
+            kind: Service
+            name: summit-edu-service
+          tls:
+            termination: edge
+            insecureEdgeTerminationPolicy: Redirect
+          wildcardPolicy: None
+          port:
+            targetPort: 9090
