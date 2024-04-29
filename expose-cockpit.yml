@@ -1,4 +1,4 @@
-- name: Create Service and Route to Access the RHEL Webconsole
+- name: Create Service Access the RHEL Web Console
   hosts: all
   tasks:
 
@@ -12,6 +12,7 @@
           name: summit-edu-service
           namespace: summit-edu
         spec:
+          type: NodePort
           selector:
             env: summit-edu
           ports:
@@ -19,23 +20,3 @@
               port: 9090
               targetPort: 9090
 
-  - name: Create cockpit route
-    kubernetes.core.k8s:
-      state: present
-      definition: 
-        kind: Route
-        apiVersion: route.openshift.io/v1
-        metadata:
-          name: summit-edu-cockpit-route
-          namespace: summit-edu
-          labels: {}
-        spec:
-          to:
-            kind: Service
-            name: summit-edu-service
-          tls:
-            termination: edge
-            insecureEdgeTerminationPolicy: Redirect
-          wildcardPolicy: None
-          port:
-            targetPort: 9090
