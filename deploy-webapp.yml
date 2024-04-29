@@ -55,7 +55,7 @@
     - name: Unarchive web content
       ansible.builtin.unarchive:
         src: /tmp/web.zip
-        dest: /tmp/*
+        dest: /tmp/
         remote_src: yes
 
     - name: Copy file with owner and permissions
