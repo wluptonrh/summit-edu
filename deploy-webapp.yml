@@ -49,7 +49,7 @@
     - name: Download website template
       ansible.builtin.get_url:
         url: https://www.free-css.com/assets/files/free-css-templates/download/page281/koppee.zip
-        dest: /var/www/html/index.html
+        dest: /var/www/html/
         decompress: true
         mode: '644'
 
