@@ -61,8 +61,7 @@
     - name: Copy contents to html
       ansible.builtin.copy:
         src: /tmp/coffee-shop-html-template/
-        dest: /var/www/html/
-        mode: '0644'
+        dest: /var/www/html
         remote_src: true
 
     # - name: Copy index.html
