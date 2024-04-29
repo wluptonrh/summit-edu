@@ -57,6 +57,7 @@
         src: /tmp/web.zip
         dest: /tmp/
         remote_src: yes
+        mode: '0644'
 
     - name: Copy contents to html
       ansible.builtin.copy:
