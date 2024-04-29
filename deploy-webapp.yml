@@ -57,6 +57,7 @@
         src: /var/www/html/web.zip
         dest: /var/www/html
         remote_src: yes
+        extra_opts: '--strip-components=1'
 
     # - name: Copy index.html
     #   ansible.builtin.copy:
