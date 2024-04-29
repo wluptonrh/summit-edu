@@ -55,16 +55,16 @@
     - name: Unarchive web content
       ansible.builtin.unarchive:
         src: /tmp/web.zip
-        dest: /tmp/
+        dest: /var/www/html/
         remote_src: yes
         mode: 0644
 
-    - name: Copy contents to html
-      ansible.builtin.copy:
-        src: /tmp/coffee-shop-html-template/
-        dest: /var/www/html
-        remote_src: true
-        mode: 0644
+    # - name: Copy contents to html
+    #   ansible.builtin.copy:
+    #     src: /tmp/coffee-shop-html-template/
+    #     dest: /var/www/html
+    #     remote_src: true
+    #     mode: 0644
 
     # - name: Copy index.html
     #   ansible.builtin.copy:
