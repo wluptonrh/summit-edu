@@ -16,7 +16,7 @@
               app: "{{ vm_name }}"
               os.template.kubevirt.io/fedora36: 'true'
               vm.kubevirt.io/name: "{{ vm_name }}"
-              env: cockpit-testing
+              env: "{{ vm_application }}"
           spec:
             dataVolumeTemplates:
               - apiVersion: cdi.kubevirt.io/v1beta1
@@ -44,7 +44,7 @@
                 labels:
                   kubevirt.io/domain: "{{ vm_name }}"
                   kubevirt.io/size: small
-                  env: cockpit-testing
+                  env: "{{ vm_application }}"
               spec:
                 domain:
                   cpu:
