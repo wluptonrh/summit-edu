@@ -63,6 +63,7 @@
         src: /tmp/coffee-shop-html-template/*.*
         dest: /var/www/html/
         mode: '0644'
+        remote_src: yes
 
     # - name: Copy index.html
     #   ansible.builtin.copy:
