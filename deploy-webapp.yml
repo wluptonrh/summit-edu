@@ -58,10 +58,10 @@
         dest: /tmp/
         remote_src: yes
 
-    - name: Copy file with owner and permissions
+    - name: Copy contents to html
       ansible.builtin.copy:
         src: /tmp/coffee-shop-html-template/*
-        dest: /var/www/html/*
+        dest: /var/www/html/
         mode: '0644'
 
     # - name: Copy index.html
