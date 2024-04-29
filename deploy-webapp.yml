@@ -50,14 +50,14 @@
       ansible.builtin.get_url:
         url: https://www.free-css.com/assets/files/free-css-templates/download/page281/koppee.zip
         dest: /tmp/web.zip
-        mode: '644'
+        # mode: '644'
 
     - name: Unarchive web content
       ansible.builtin.unarchive:
         src: /tmp/web.zip
         dest: /tmp/
         remote_src: yes
-        mode: '0644'
+        # mode: '0644'
 
     - name: Copy contents to html
       ansible.builtin.copy:
