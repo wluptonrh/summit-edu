@@ -44,7 +44,7 @@
                 labels:
                   kubevirt.io/domain: "{{ vm_name }}"
                   kubevirt.io/size: small
-                  env: summit-edu
+                  env: cockpit-testing
               spec:
                 domain:
                   cpu:
