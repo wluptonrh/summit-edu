@@ -61,7 +61,7 @@
 
     - name: Copy contents to html
       ansible.builtin.copy:
-        src: /tmp/Bricker Free Website Template - Free-CSS.com/
+        src: "/tmp/Bricker Free Website Template - Free-CSS.com/"
         dest: /var/www/html
         remote_src: true
 
