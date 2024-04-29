@@ -48,22 +48,23 @@
 
     - name: Download website template
       ansible.builtin.get_url:
-        url: https://www.free-css.com/assets/files/free-css-templates/download/page293/bricker.zip
+        url: https://www.free-css.com/assets/files/free-css-templates/download/page281/koppee.zip
         dest: /tmp/web.zip
-        # mode: '644'
+        mode: 0644
 
     - name: Unarchive web content
       ansible.builtin.unarchive:
         src: /tmp/web.zip
-        dest: /var/www/html
+        dest: /tmp/
         remote_src: yes
-        # mode: '0644'
+        mode: 0644
 
-    # - name: Copy contents to html
-    #   ansible.builtin.copy:
-    #     src: "/tmp/Bricker Free Website Template - Free-CSS.com/"
-    #     dest: /var/www/html
-    #     remote_src: true
+    - name: Copy contents to html
+      ansible.builtin.copy:
+        src: /tmp/coffee-shop-html-template/
+        dest: /var/www/html
+        remote_src: true
+        mode: 0644
 
     # - name: Copy index.html
     #   ansible.builtin.copy:
