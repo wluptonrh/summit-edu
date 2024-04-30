@@ -5,9 +5,11 @@
   tasks:
 
     - name: Setup Networking for Apache
-      ansible.builtin.import_playbook: expose-webapp.yml
+      ansible.builtin.import_tasks: 
+        file: expose-webapp.yml
       when: vm_application == "apache"
 
     - name: Setup Networking for Cockpit
-      ansible.builtin.import_playbook: expose-cockpit.yml
+      ansible.builtin.import_tasks: 
+        file: expose-cockpit.yml
       when: vm_application == "cockpit"
