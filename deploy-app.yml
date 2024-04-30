@@ -1,0 +1,13 @@
+---
+- name: Install Application and Config Firewall
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Install and Start Apache
+      ansible.builtin.import_playbook: deploy-webapp.yml
+      when: vm_application == "apache"
+
+    - name: Install and Start Cockpit
+      ansible.builtin.import_playbook: deploy-cockpit.yml
+      when: vm_application == "cockpit"
