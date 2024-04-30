@@ -1,53 +1,55 @@
-- name: Create Service and Route for our Apache Webserver
-  hosts: localhost
-  tasks:
+---
 
-  - name: Create webapp service
-    kubernetes.core.k8s:
-      state: present
-      definition:
-        apiVersion: v1
-        kind: Service
-        metadata:
-          name: webapp-service
-          namespace: summit-edu
-        spec:
-          selector:
-            env: "{{ vm_application }}"
-          ports:
-            - protocol: TCP
-              port: 80
-              targetPort: 80
+# - name: Create Service and Route for our Apache Webserver
+#   hosts: localhost
+#   tasks:
 
-  - name: Create webapp route
-    kubernetes.core.k8s:
-      state: present
-      definition: 
-        kind: Route
-        apiVersion: route.openshift.io/v1
-        metadata:
-          name: webapp-route
-          namespace: summit-edu
-          labels: {}
-        spec:
-          to:
-            kind: Service
-            name: webapp-service
-          tls:
-            termination: edge
-            insecureEdgeTerminationPolicy: Redirect
-          wildcardPolicy: None
-          port:
+- name: Create webapp service
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: webapp-service
+        namespace: summit-edu
+      spec:
+        selector:
+          env: "{{ vm_application }}"
+        ports:
+          - protocol: TCP
+            port: 80
             targetPort: 80
 
-  - name: Fetch route info
-    kubernetes.core.k8s:
-      api_version: v1
+- name: Create webapp route
+  kubernetes.core.k8s:
+    state: present
+    definition: 
       kind: Route
-      name: webapp-route
-      namespace: summit-edu
-    register: route_info
+      apiVersion: route.openshift.io/v1
+      metadata:
+        name: webapp-route
+        namespace: summit-edu
+        labels: {}
+      spec:
+        to:
+          kind: Service
+          name: webapp-service
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
+        wildcardPolicy: None
+        port:
+          targetPort: 80
 
-  - name: Print webapp route info
-    ansible.bulitin.debug:
-      msg: "{{ route_info }}"
+- name: Fetch route info
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: Route
+    name: webapp-route
+    namespace: summit-edu
+  register: route_info
+
+- name: Print webapp route info
+  ansible.bulitin.debug:
+    msg: "{{ route_info }}"
