@@ -51,5 +51,5 @@
   register: route_info
 
 - name: Print webapp route info
-  ansible.bulitin.debug:
+  ansible.builtin.debug:
     msg: "{{ route_info }}"
