@@ -1,6 +1,6 @@
 ---
 - name: Install Webserver Components and Setup Firewall
-  hosts: summit-edu-{{ vm_name }}"
+  hosts: summit-edu-{{ vm_name }}
   become: true
   tasks:
 
