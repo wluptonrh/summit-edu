@@ -1,7 +1,7 @@
 ---
 - name: Expose Application on OpenShift
   hosts: localhost
-  become: true
+  #become: true
   tasks:
 
     - name: Setup Networking for Apache
