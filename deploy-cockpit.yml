@@ -20,14 +20,14 @@
     service: cockpit
     permanent: true
     state: enabled
-  notify: Reload Firewall
+  #notify: Reload Firewall
 
 - name: Allow HTTPS traffic on web servers
   ansible.posix.firewalld:
     service: cockpit
     permanent: true
     state: enabled
-  notify: Reload Firewall
+  #notify: Reload Firewall
 
 - name: Install cockpit
   ansible.builtin.dnf:
