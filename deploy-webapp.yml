@@ -25,14 +25,14 @@
     service: http
     permanent: true
     state: enabled
-  notify: Reload Firewall
+  #notify: Reload Firewall
 
 - name: Allow HTTPS traffic on web servers
   ansible.posix.firewalld:
     service: https
     permanent: true
     state: enabled
-  notify: Reload Firewall
+  #notify: Reload Firewall
 
 
 - name: Install apache
