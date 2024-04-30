@@ -9,11 +9,11 @@
         apiVersion: v1
         kind: Service
         metadata:
-          name: summit-edu-service
+          name: webapp-service
           namespace: summit-edu
         spec:
           selector:
-            env: summit-edu
+            env: "{{ vm_application }}"
           ports:
             - protocol: TCP
               port: 80
@@ -26,16 +26,28 @@
         kind: Route
         apiVersion: route.openshift.io/v1
         metadata:
-          name: summit-edu-route
+          name: webapp-route
           namespace: summit-edu
           labels: {}
         spec:
           to:
             kind: Service
-            name: summit-edu-service
+            name: webapp-service
           tls:
             termination: edge
             insecureEdgeTerminationPolicy: Redirect
           wildcardPolicy: None
           port:
             targetPort: 80
+
+  - name: Fetch route info
+    kubernetes.core.k8s:
+      api_version: v1
+      kind: Route
+      name: webapp-route
+      namespace: summit-edu
+    register: route_info
+
+  - name: Print webapp route info
+    ansible.bulitin.debug:
+      msg: "{{ route_info }}"
