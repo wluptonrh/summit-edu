@@ -4,6 +4,9 @@
   become: true
   tasks:
 
+    - debug:
+        msg: "{{ vm_application }}"
+
     - name: Install and Start Apache
       ansible.builtin.import_tasks: 
         file: deploy-webapp.yml
