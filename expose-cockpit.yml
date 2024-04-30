@@ -1,5 +1,5 @@
 - name: Create Service Access the RHEL Web Console
-  hosts: all
+  hosts: localhost
   tasks:
 
     - name: Create Cockpit Service
