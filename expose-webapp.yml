@@ -52,4 +52,4 @@
 
 - name: Print webapp route info
   ansible.builtin.debug:
-    msg: "{{ route_info }}"
+    msg: "{{ route_info.result.spec.host }}"
