@@ -1,5 +1,5 @@
 - name: Create Service and Route for our Apache Webserver
-  hosts: all
+  hosts: localhost
   tasks:
 
   - name: Create webapp service
