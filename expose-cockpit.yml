@@ -2,27 +2,25 @@
   hosts: all
   tasks:
 
-  - name: Create Cockpit Service
-    kubernetes.core.k8s:
-      state: present
-      definition:
-        apiVersion: v1
-        kind: Service
-        metadata:
-          name: cockpit-testing-svc
-          namespace: summit-edu
-        spec:
-          type: NodePort
-          selector:
-            env: cockpit-testing
-          ports:
-            - protocol: TCP
-              port: 9090
-              targetPort: 9090
-    register: svc_info
+    - name: Create Cockpit Service
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: cockpit-service
+            namespace: summit-edu
+          spec:
+            type: NodePort
+            selector:
+              env: "{{ vm_application }}"
+            ports:
+              - protocol: TCP
+                port: 9090
+                targetPort: 9090
+      register: svc_info
 
-  - name: Print Service Info
-    debug:
-      msg: "{{ svc_info }}"
-  
-
+    - name: Print Service Info
+      ansible.builtin.debug:
+        msg: "{{ svc_info }}"
