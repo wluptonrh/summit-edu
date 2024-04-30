@@ -1,8 +1,8 @@
 ---
-- name: Install Webserver Components and Setup Firewall
-  hosts: summit-edu-{{ vm_name }}
-  become: true
-  tasks:
+# - name: Install Webserver Components and Setup Firewall
+#   hosts: summit-edu-{{ vm_name }}
+#   become: true
+#   tasks:
 
     - name: Install unzip
       ansible.builtin.dnf:
