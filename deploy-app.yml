@@ -1,6 +1,6 @@
 ---
 - name: Install Application and Config Firewall
-  hosts: all
+  hosts: summit-edu-{{ vm_name }}
   become: true
   tasks:
 
