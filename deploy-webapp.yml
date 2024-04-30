@@ -1,5 +1,5 @@
 ---
-- name: Basic System Setup
+- name: Install Webserver Components and Setup Firewall
   hosts: all
   become: true
   tasks:
@@ -34,7 +34,7 @@
         state: enabled
       notify: Reload Firewall
 
-    
+
     - name: Install apache
       ansible.builtin.dnf:
         name: httpd
@@ -49,22 +49,22 @@
     - name: Download website template
       ansible.builtin.get_url:
         url: https://www.free-css.com/assets/files/free-css-templates/download/page281/koppee.zip
-        dest: /tmp/web.zip
-        mode: 0644
+        dest: /var/www/html/web.zip
+        # mode: 0644
 
     - name: Unarchive web content
       ansible.builtin.unarchive:
-        src: /tmp/web.zip
+        src: /var/www/html/web.zip
         dest: /var/www/html/
-        remote_src: yes
-        mode: 0644
+        remote_src: true
+        # mode: 0644
 
-    # - name: Copy contents to html
-    #   ansible.builtin.copy:
-    #     src: /tmp/coffee-shop-html-template/
-    #     dest: /var/www/html
-    #     remote_src: true
-    #     mode: 0644
+    - name: Copy contents to html
+      ansible.builtin.copy:
+        src: /var/www/html/coffee-shop-html-template/
+        dest: /var/www/html
+        remote_src: true
+        # mode: 0644
 
     # - name: Copy index.html
     #   ansible.builtin.copy:
