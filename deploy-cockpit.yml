@@ -1,6 +1,6 @@
 ---
 - name: Basic System Setup to Deploy RHEL Webconsole
-  hosts: all
+  hosts: summit-edu-{{ vm_name }}
   become: true
   tasks:
 
